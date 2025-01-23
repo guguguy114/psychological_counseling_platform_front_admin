@@ -31,6 +31,11 @@ const routes = [
     component: () => import('../views/LoginView.vue')
   },
   {
+    path: '/test',
+    name: 'test',
+    component: () => import('@/views/TestView.vue')
+  },
+  {
     path: '/404',
     name: '404',
     component: () => import('../views/NoFoundView.vue')
@@ -64,6 +69,16 @@ const routes = [
         path: '/main/permission_manage',
         name: 'permission_manage',
         component: () => import('../views/PermissionManageView.vue')
+      },
+      {
+        path: '/main/question_manage',
+        name: 'question_manage',
+        component: () => import('../views/QuestionManageView.vue')
+      },
+      {
+        path: '/main/log_manage',
+        name: 'log_manage',
+        component: () => import('../views/LogManageView.vue')
       }
     ]
   },

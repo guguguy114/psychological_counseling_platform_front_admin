@@ -32,7 +32,7 @@
 
         <!-- 参数表格 -->
         <el-table :data="menus" stripe style="width: 100%" :default-sort="{ prop: 'menuOrder', order: 'descending' }"
-            :border="true">
+            :border="true" height="60vh">
             <el-table-column prop="menuId" label="MID" width="100"></el-table-column>
             <el-table-column prop="menuName" label="菜单名称" width="400" sortable></el-table-column>
             <el-table-column prop="menuUrl" label="URL" width="300" sortable></el-table-column>

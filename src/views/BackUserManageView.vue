@@ -39,7 +39,7 @@
 
         <!-- 用户表格 -->
         <el-table :data="admins" stripe style="width: 100%" :default-sort="{ prop: 'adminName', order: 'descending' }"
-            :border="true">
+            :border="true" height="60vh">
             <el-table-column prop="adminId" label="AdminID" width="100"></el-table-column>
             <el-table-column prop="adminName" label="后台用户名" width="180" sortable></el-table-column>
             <el-table-column prop="role.roleName" label="身份" width="100" sortable></el-table-column>

@@ -7,12 +7,12 @@
         </template>
 
         <template v-for="(item) in menuItem.childrenMenu">
-            <cy-submenu :menu-item="item" :key="item.menuId"></cy-submenu>
+            <cy-submenu :menu-item="item" :key="item.menuId" @menu-change="onMenuChange"></cy-submenu>
         </template>
     </el-submenu>
 
     <!-- 没有子菜单 -->
-    <el-menu-item :index="menuItem.menuUrl !== undefined ? '/main' + menuItem.menuUrl : '/main/404'" v-else>
+    <el-menu-item :index="menuItem.menuUrl !== undefined ? '/main' + menuItem.menuUrl : '/main/404'" @click="onClick" v-else>
         <i class="el-icon-setting"></i>
         <span slot="title">{{ menuItem.menuName }}</span>
     </el-menu-item>
@@ -27,6 +27,15 @@ export default {
         menuItem: {
             type: Object,
             default: () => {}
+        }
+    },
+
+    methods: {
+        onClick() {
+            this.$emit('menu-change', this.menuItem)
+        },
+        onMenuChange(menu) {
+            this.$emit('menu-change', menu)
         }
     },
     created() {

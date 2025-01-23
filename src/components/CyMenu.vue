@@ -2,9 +2,8 @@
     <!-- default-active默认选中 -->
     <el-menu default-active="" class="el-menu-vertical" @open="handleOpen" :router="elUseRouter" a
         @close="handleClose">
-        
         <template v-for="(item) in this.menuList">
-            <cy-submenu :menu-item="item" :key="item.menuId"></cy-submenu>
+            <cy-submenu :menu-item="item" :key="item.menuId" @menu-change="onMenuChange"></cy-submenu>
         </template>
     </el-menu>
 </template>
@@ -34,6 +33,9 @@ export default {
         },
         handleClose(key, keyPath) {
             console.log(key, keyPath);
+        },
+        onMenuChange(menu) {
+            this.$emit('menu-change', menu)
         }
     },
     created() {

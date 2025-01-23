@@ -32,7 +32,7 @@
 
 
         <!-- 参数表格 -->
-        <el-table :data="paramItems" stripe style="width: 100%"
+        <el-table :data="paramItems" stripe style="width: 100%" height="60vh"
             :default-sort="{ prop: 'param.paramName', order: 'descending' }" :border="true">
             <el-table-column prop="paramItemId" label="PTID" width="100"></el-table-column>
             <el-table-column prop="paramItemName" label="参数名称" width="400" sortable></el-table-column>

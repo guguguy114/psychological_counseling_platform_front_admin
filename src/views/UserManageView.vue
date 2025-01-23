@@ -26,7 +26,7 @@
 
         <!-- 用户表格 -->
         <el-table :data="users" stripe style="width: 100%" :default-sort="{ prop: 'userName', order: 'descending' }"
-            :border="true">
+            :border="true" height="60vh">
             <el-table-column prop="userId" label="UID" width="70"></el-table-column>
             <el-table-column prop="userName" label="用户名" width="180" sortable></el-table-column>
             <el-table-column prop="userSex" label="用户性别" width="100" sortable>

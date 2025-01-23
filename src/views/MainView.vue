@@ -3,18 +3,32 @@
         <el-container>
             <el-header>
                 <el-col :span="4">
-                    心理咨询平台后台管理系统
+                    <h3>心理咨询平台后台管理系统</h3>
                 </el-col>
-                <el-col :span="4" :offset="14">
+
+                <div style="left: 18vw; position: fixed; width: 20vw; text-align: left;">
+                    <h4 style="margin-right: 2vw;">
+                        {{ currentPageName !== "" ? ' > ' : "" }}
+                    </h4>
+                    <h4>
+                        {{ currentPageName !== "" ? currentPageName : "" }}
+                    </h4>
+                </div>
+
+
+                <el-col :span="4" :offset="10">
                     当前用户：{{ admin.name }}
+                </el-col>
+                <el-col :span="4">
+                    您的身份：{{ admin.roleName }}
                 </el-col>
                 <el-col :span="2">
                     <el-button type="text" @click="onLogout">退出登录</el-button>
                 </el-col>
             </el-header>
             <el-container>
-                <el-aside width="300px">
-                    <cy-menu :menu-list="menuList"></cy-menu>
+                <el-aside width="18vw">
+                    <cy-menu :menu-list="menuList" @menu-change="onMenuChange"></cy-menu>
                 </el-aside>
                 <el-container>
                     <el-main>
@@ -43,17 +57,20 @@ export default {
             this.$router.push({
                 name: "login"
             });
+        },
+        onMenuChange(menu) {
+            this.currentPageName = menu.menuName;
         }
     },
     data() {
         return {
             menuList: [],
+            currentPageName: "",
             admin: {},
         }
     },
     created() {
         this.admin = this.$store.state.userData;
-
         http.post("/menu/get_menu", {
             adminId: this.admin.adminId
         }).then(res => {
@@ -98,4 +115,9 @@ body>.el-container {
 .el-container:nth-child(7) .el-aside {
     line-height: 320px;
 }
+
+h4 {
+    display: inline-block;
+}
+
 </style>
