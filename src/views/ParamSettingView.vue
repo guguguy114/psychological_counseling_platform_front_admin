@@ -24,7 +24,7 @@
                     </el-col>
                     <el-col :span="2">
                         <el-button type="primary" :loading="addBtnLoading"
-                            @click="addDialogVisible = true">新增参数</el-button>
+                            @click="onAdd">新增参数</el-button>
                     </el-col>
                 </el-row>
             </el-form>
@@ -298,6 +298,8 @@ export default {
             done()
         },
         add() {
+
+
             this.addBtnLoading = true;
             http.post("/param_item/insert_param_item", {
                 paramItemName: this.addForm.paramItemName,
@@ -320,6 +322,13 @@ export default {
         addDialogBeforeClose(done) {
             done()
         },
+        onAdd() {
+            this.addDialogVisible = true;
+            this.addForm.paramId = null;
+            this.addForm.paramItemName = null;
+            this.addForm.paramItemValue = null;
+
+        }
     },
     created() {
         this.getParamItems();

@@ -28,6 +28,7 @@ const routes = [
   {
     path: '/',
     name: 'login',
+    meta: { title: '登录' },
     component: () => import('../views/LoginView.vue')
   },
   {
@@ -38,16 +39,19 @@ const routes = [
   {
     path: '/404',
     name: '404',
+    meta: { title: '404' },
     component: () => import('../views/NoFoundView.vue')
   },
   {
     path: '/main',
     name: 'main',
+    meta: { title: '主页' },
     component: () => import('../views/MainView.vue'),
     children: [
       {
         path: '/main/user_manage',
         name: 'user_manage',
+        meta: { title: '用户管理' },
         component: () => import('../views/UserManageView.vue')
       },
       {
@@ -84,7 +88,7 @@ const routes = [
   },
 ]
 
-const whiteList = ["/", "/enroll"];
+const whiteList = ["/"];
 
 const router = new VueRouter({
   mode: 'hash',
@@ -102,6 +106,7 @@ router.beforeEach((to, from, next) => {
   console.log("from", from);
   // 如果路径在数组返回index没有在数组里面就返回-1
   if (whiteList.indexOf(to.path) !== -1) {
+    to.meta.title && (document.title = to.meta.title);
     next();
   } else {
     // 如果有登录信息，允许登录
@@ -116,6 +121,7 @@ router.beforeEach((to, from, next) => {
         console.log("vuex不存在");
         store.dispatch("getadmininfobytoken");
       }
+      to.meta.title && (document.title = to.meta.title);
       next();
     } else {
       // 没有登录
@@ -127,6 +133,7 @@ router.beforeEach((to, from, next) => {
       // 需要不能相同
       if (from.path !== to.path && to.path !== "/") {
         console.log("redirect to login");
+        to.meta.title && (document.title = to.meta.title);
         next(
           {
             path: "/",

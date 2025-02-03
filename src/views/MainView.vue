@@ -74,7 +74,11 @@ export default {
         http.post("/menu/get_menu", {
             adminId: this.admin.adminId
         }).then(res => {
-            this.menuList = res.data;
+            if (res.code == 200) {
+                this.menuList = res.data;
+            } else {
+                this.$message.error("获取菜单失败");
+            }
         })
     }
 }
@@ -118,6 +122,12 @@ body>.el-container {
 
 h4 {
     display: inline-block;
+}
+
+.el-main {
+    background-color: #f7f7f7;
+    color: #333;
+    text-align: center;
 }
 
 </style>

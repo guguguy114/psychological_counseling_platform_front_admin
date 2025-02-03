@@ -3,7 +3,7 @@
 
         <div id="login-box">
             <div>
-                <h1>后台管理系统</h1>
+                <h1 id="title">后台管理系统</h1>
             </div>
             <el-form ref="loginForm" :model="loginForm" label-width="80px">
                 <el-form-item label="账号：">
@@ -94,9 +94,18 @@ export default {
 </script>
 
 <style scoped>
+
+#title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
 #login-box {
     width: 30vw;
     height: 50vh;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 0 auto;

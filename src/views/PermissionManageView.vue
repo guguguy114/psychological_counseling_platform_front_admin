@@ -194,4 +194,10 @@ export default {
 #role-line {
     margin-bottom: 10px;
 }
+
+.transfer-main {
+    height: 400px;
+    background-color: white;
+}
+
 </style>

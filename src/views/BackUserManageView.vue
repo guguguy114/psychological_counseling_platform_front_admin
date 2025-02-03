@@ -207,6 +207,7 @@ export default {
                     consultantFieldId: '',
                 }
             },
+
             addBtnLoading: false,
             resetPasswordDialogVisible: false,
             resetDialogBtnLoading: false,
@@ -327,7 +328,7 @@ export default {
                     adminAccount: this.addForm.adminAccount,
                     adminPassword: this.addForm.adminPassword,
                     adminStatus: this.addForm.adminStatus,
-                    adminRole: this.addForm.adminRole,
+                    adminRoleId: this.addForm.adminRole,
                 }
             }
             http.post("/admin/insert_admin", newForm).then(res => {
