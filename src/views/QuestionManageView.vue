@@ -30,6 +30,7 @@
                         <el-table-column prop="questionItemId" label="QIID" width="60"></el-table-column>
                         <el-table-column prop="questionItemName" label="选项名" width="200" sortable></el-table-column>
                         <el-table-column prop="questionItemOrder" label="选项次序" width="200" sortable></el-table-column>
+                        <el-table-column prop="questionItemScore" label="分值" width="200" sortable></el-table-column>
                         <el-table-column label="操作">
                             <template slot-scope="scope">
                                 <el-button type="text" @click="onEditRow(scope.row)">修改</el-button>
@@ -87,7 +88,7 @@
 
 
         <!-- 新增选项对话框 -->
-        <el-dialog title="新增题目" width="30vw" :visible.sync="addOptionDialogVisible"
+        <el-dialog title="新增选项" width="30vw" :visible.sync="addOptionDialogVisible"
             :before-close="addOptionDialogBeforeClose">
             <el-form :model="addOptionForm">
                 <el-row :gutter="10">
@@ -100,9 +101,18 @@
 
                 <el-row :gutter="10">
                     <el-col :span="20">
-                        <el-form-item label="题目次序：" label-width="120px">
+                        <el-form-item label="选项次序：" label-width="120px">
                             <el-input v-model="addOptionForm.questionItemOrder" type="number"
-                                placeholder="输入题目次序"></el-input>
+                                placeholder="输入选项次序"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+
+                <el-row :gutter="10">
+                    <el-col :span="20">
+                        <el-form-item label="选项分值：" label-width="120px">
+                            <el-input v-model="addOptionForm.questionItemScore" type="number"
+                                placeholder="输入选项分值"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -164,6 +174,15 @@
                     </el-col>
                 </el-row>
 
+                <el-row :gutter="10">
+                    <el-col :span="20">
+                        <el-form-item label="修改选项分值：" label-width="120px">
+                            <el-input v-model="updateQuestionItemForm.questionItemScore" type="number"
+                                placeholder="输入新选项分值"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+
             </el-form>
             <div slot="footer">
                 <el-button @click="editQuestionItemDialogVisible = false">取 消</el-button>
@@ -216,12 +235,14 @@ export default {
             editQuestionItemConfirmBtnLoading: false,
             addOptionForm: {
                 questionItemName: '',
-                questionItemOrder: ''
+                questionItemOrder: '',
+                questionItemScore: ''
             },
             updateQuestionItemForm: {
                 questionItemId: '',
                 questionItemName: '',
-                questionItemOrder: ''
+                questionItemOrder: '',
+                questionItemScore: ''
             },
             updateQuestionForm: {
                 questionId: '',
@@ -331,7 +352,8 @@ export default {
             this.updateQuestionItemForm = {
                 questionItemId: row.questionItemId,
                 questionItemName: row.questionItemName,
-                questionItemOrder: row.questionItemOrder
+                questionItemOrder: row.questionItemOrder,
+                questionItemScore: row.questionItemScore
             }
             this.editQuestionItemDialogVisible = true
         },
@@ -409,6 +431,7 @@ export default {
             http.post('/question_item/insert_question_item', {
                 questionItemName: this.addOptionForm.questionItemName,
                 questionItemOrder: this.addOptionForm.questionItemOrder,
+                questionItemScore: this.addOptionForm.questionItemScore,
                 questionId: this.currentQuestion.questionId
             }).then(res => {
                 if (res.code === 200) {
@@ -428,6 +451,7 @@ export default {
                 }
                 this.addOptionForm.questionItemName = ''
                 this.addOptionForm.questionItemOrder = ''
+                this.addOptionForm.questionItemScore = ''
             })
         },
         editQuestionDialogBeforeClose(done) {
@@ -466,6 +490,7 @@ export default {
                 questionItemId: this.updateQuestionItemForm.questionItemId,
                 questionItemName: this.updateQuestionItemForm.questionItemName,
                 questionItemOrder: this.updateQuestionItemForm.questionItemOrder,
+                questionItemScore: this.updateQuestionItemForm.questionItemScore
             }).then(res => {
                 if (res.code === 200) {
                     this.$message({

@@ -57,21 +57,25 @@ const routes = [
       {
         path: '/main/back_user_manage',
         name: 'back_user_manage',
+        meta: { title: '后台用户管理' },
         component: () => import('../views/BackUserManageView.vue')
       },
       {
         path: '/main/param_setting',
         name: 'param_setting',
+        meta: { title: '参数配置' },
         component: () => import('../views/ParamSettingView.vue')
       },
       {
         path: '/main/menu_manage',
         name: 'menu_manage',
+        meta: { title: '菜单管理' },
         component: () => import('../views/MenuManageView.vue')
       },
       {
         path: '/main/permission_manage',
         name: 'permission_manage',
+        meta: { title: '权限管理' },
         component: () => import('../views/PermissionManageView.vue')
       },
       {

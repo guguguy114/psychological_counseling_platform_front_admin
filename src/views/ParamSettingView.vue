@@ -23,8 +23,7 @@
                         <el-button type="primary" :loading="queryBtnLoading" @click="getParamItems">查询</el-button>
                     </el-col>
                     <el-col :span="2">
-                        <el-button type="primary" :loading="addBtnLoading"
-                            @click="onAdd">新增参数</el-button>
+                        <el-button type="primary" :loading="addBtnLoading" @click="onAdd">新增参数</el-button>
                     </el-col>
                 </el-row>
             </el-form>
@@ -102,7 +101,7 @@
         <el-dialog title="新增参数" :visible.sync="addDialogVisible" width="30vw" :before-close="addDialogBeforeClose">
             <el-form :model="addForm">
                 <el-row :gutter="10">
-                    <el-col :span="10 ">
+                    <el-col :span="10">
                         <el-form-item label="参数名称：" size="small">
                             <el-input v-model="addForm.paramItemName" placeholder="请输入参数名称"></el-input>
                         </el-form-item>
