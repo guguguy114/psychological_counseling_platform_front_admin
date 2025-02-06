@@ -8,6 +8,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@fullcalendar/core": "^6.1.15",
+    "@fullcalendar/interaction": "^6.1.15",
+    "@fullcalendar/resource": "^6.1.15",
+    "@fullcalendar/resource-timeline": "^6.1.15",
+    "@fullcalendar/timegrid": "^6.1.15",
+    "@fullcalendar/vue": "^6.1.15",
     "axios": "^1.7.9",
     "core-js": "^3.8.3",
     "el-tree-transfer": "^2.4.7",

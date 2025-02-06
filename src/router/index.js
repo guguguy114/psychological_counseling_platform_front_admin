@@ -87,6 +87,30 @@ const routes = [
         path: '/main/log_manage',
         name: 'log_manage',
         component: () => import('../views/LogManageView.vue')
+      },
+      {
+        path: '/main/assessment_manage',
+        name: 'assessment_manage',
+        meta: { title: '在线评估管理' },
+        component: () => import('../views/AssessmentManageView.vue')
+      },
+      {
+        path: '/main/account_wallet',
+        name: 'account_wallet',
+        meta: { title: '资金账户' },
+        component: () => import('../views/AccountWalletView.vue')
+      },
+      {
+        path: '/main/appointment_time_setting',
+        name: 'appointment_time_setting',
+        meta: { title: '预约时间设置' },
+        component: () => import('../views/AppointmentTimeSettingView.vue')
+      },
+      {
+        path: '/main/appointment',
+        name: 'appointment',
+        meta: { title: '预约诊断' },
+        component: () => import('../views/AppointmentView.vue')
       }
     ]
   },
@@ -120,7 +144,7 @@ router.beforeEach((to, from, next) => {
     if (authToken.getToken()) {
       console.log("token存在");
       console.log(store);
-      
+
       if (store.state.userData.adminId === undefined) {
         console.log("vuex不存在");
         store.dispatch("getadmininfobytoken");
