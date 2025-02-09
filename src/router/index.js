@@ -49,6 +49,12 @@ const routes = [
     component: () => import('../views/MainView.vue'),
     children: [
       {
+        path: '/main/appointment_manage',
+        name: 'appointment_manage',
+        meta: { title: '咨询预约管理' },
+        component: () => import('../views/AppointmentManageView.vue')
+      },
+      {
         path: '/main/user_manage',
         name: 'user_manage',
         meta: { title: '用户管理' },

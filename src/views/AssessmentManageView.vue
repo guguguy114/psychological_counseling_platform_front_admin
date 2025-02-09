@@ -47,17 +47,33 @@
         <!-- 详情弹出框 -->
         <el-dialog title="报告详情" :visible.sync="detailDialogVisible" width="40vw"
             :before-close="detailDialogBeforeClose">
-            <el-form ref="form" label-width="100px">
-                <el-form-item label="评测结果：" style="text-align: start;">
-                    {{ currentRow !== null ? results.find(item => item.paramItemValue === currentRow.assessmentResult).paramItemName : '' }}
-                </el-form-item>
-                <el-form-item label="评测时间：" style="text-align: start;">
+            <el-descriptions :column="2" border class="margin-top">
+                <el-descriptions-item>
+                    <template slot="label">
+                        <i class="el-icon-user"></i>
+                        评测结果
+                    </template>
+                    {{ currentRow !== null ? results.find(item => item.paramItemValue ===
+                        currentRow.assessmentResult).paramItemName : '' }}
+                </el-descriptions-item>
+
+                <el-descriptions-item>
+                    <template slot="label">
+                        <i class="el-icon-time"></i>
+                        评测时间
+                    </template>
                     {{ currentRow !== null ? currentRow.assessmentTime : '' }}
-                </el-form-item>
-                <el-form-item label="报告内容：" style="text-align: start;">
+                </el-descriptions-item>
+            </el-descriptions>
+
+            <el-card class="box-card">
+                <div slot="header" class="clearfix">
+                    <span id="item-title">报告内容</span>
+                </div>
+                <div class="text item">
                     {{ currentRow !== null ? currentRow.assessmentReport : '' }}
-                </el-form-item>
-            </el-form>
+                </div>
+            </el-card>
 
             <div slot="footer">
                 <el-button @click="detailDialogVisible = false">返 回</el-button>
@@ -172,4 +188,29 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.text {
+    text-indent: 2em;
+    text-align: start;
+    font-size: 15px;
+}
+
+.item {
+    margin-bottom: 18px;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both
+}
+
+.box-card {
+    margin-top: 20px;
+    width: 100%;
+}
+</style>
