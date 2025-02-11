@@ -347,6 +347,9 @@ export default {
             }).then(() => {
                 http.post("/appointment/update_appointment_by_id", {
                     appointmentId: row.appointmentId,
+                    userId: row.userId,
+                    appointmentPrice: row.appointmentPrice,
+                    consultantId: this.$store.state.userData.consultantId,
                     appointmentStatus: 2
                 }).then(res => {
                     if (res.code == 200) {
@@ -355,6 +358,11 @@ export default {
                             type: 'success'
                         });
                         this.getAppointment();
+                    } else {
+                        this.$message({
+                            message: res.msg,
+                            type: 'error'
+                        });
                     }
                 })
             }).catch(() => {

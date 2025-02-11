@@ -246,6 +246,7 @@ export default {
                 } else {
                     this.$message.error(res.msg)
                 }
+                this.getAppointmentTime()
                 this.confirmBtnLoading = false
                 this.dayDetailVisible = false
             })

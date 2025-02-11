@@ -117,6 +117,12 @@ const routes = [
         name: 'appointment',
         meta: { title: '预约诊断' },
         component: () => import('../views/AppointmentView.vue')
+      },
+      {
+        path: '/main/user_statistics',
+        name: 'user_statistics',
+        meta: { title: '用户统计' },
+        component: () => import('../views/UserStatisticsView.vue')
       }
     ]
   },
